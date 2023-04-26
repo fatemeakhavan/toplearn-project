@@ -1,0 +1,44 @@
+{
+  "contacts": [
+    {
+      "fullname": "یونس قربانی",
+      "photo": "https://toplearn.com/masters/prixy",
+      "mobile": "0901567432",
+      "email": "yonesghorbani8@gmail.com",
+      "job": "برنامه نویس",
+      "group": "1",
+      "id": 1
+    },
+    {
+      "fullname": "ایمان مداینی",
+      "photo": "https://toplearn.com/masters/AdminUser",
+      "mobile": "090987542",
+      "email": "imanmadani7@gmail.com",
+      "job": "برنامه نویس",
+      "group": "1",
+      "id": 2
+    }
+  ],
+  "group": [
+    {
+      "id": "1",
+      "name": "همکار"
+    },
+    {
+      "id": "2",
+      "name": "دوست"
+    },
+    {
+      "id": "3",
+      "name": "فامیل"
+    },
+    {
+      "id": "4",
+      "name": "سرویس"
+    },
+    {
+      "id": "5",
+      "name": "آشنا"
+    }
+  ]
+}
