@@ -14,7 +14,7 @@ const Contact =({contact})=>{
                             <ul className="list-group">
                                 <li className="list-group-item list-group-item-dark">
                                     نام نام خانوادگی:{" "}
-                                    <span className="fw-bold">contact.fullname</span>
+                                    <span className="fw-bold">{contact.fullname}</span>
                                 </li>
                                 <li className="list-group-item list-group-item-dark">
                                     شماره موبایل:{" "}
@@ -22,7 +22,7 @@ const Contact =({contact})=>{
                                 </li>
                                 <li className="list-group-item list-group-item-dark">
                                     آدرس ایمیل:{" "}
-                                    <span className="fw-bold">contact.email</span>
+                                    <span className="fw-bold">{contact.email}</span>
                                 </li>
                             </ul>
                         </div>

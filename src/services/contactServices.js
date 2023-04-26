@@ -1,34 +1,35 @@
 import axios from 'axios';
-const SERVICES_URL ="http://localhost:9000";
 
-export const getAllContacts=()=>{
-    const url=`${SERVICES_URL}/contacts`;
-    return axios.get(url);
-};
-export const getContact=(contactId)=>{
-    const url=`${SERVICES_URL}/contacts/${contactId}`;
-    return axios.get(url)
-};
+const SERVICES_URL = "http://localhost:9000";
 
-export const getAllGroups=()=>{
-    const url=`${SERVICES_URL}/group`;
-    return axios.get(url);
+export const getAllContacts = async () => {
+    const url = `${SERVICES_URL}/contacts`;
+    return await axios.get(url);
 };
-export const getGroup=(groupId)=>{
-    const url=`${SERVICES_URL}/group/${groupId}`;
-    return axios.get(url);
+export const getContact = async (contactId) => {
+    const url = `${SERVICES_URL}/contacts/${contactId}`;
+    return await axios.get(url)
 };
 
+export const getAllGroups = async () => {
+    const url = `${SERVICES_URL}/group`;
+    return await axios.get(url);
+};
+export const getGroup = async (groupId) => {
+    const url = `${SERVICES_URL}/group/${groupId}`;
+    return await axios.get(url);
+};
 
-export const createContacts=(contact)=>{
-    const url=`${SERVICES_URL}/contacts`;
-    return axios.post(url,contact);
+
+export const createContacts = async (contact) => {
+    const url = `${SERVICES_URL}/contacts`;
+    return await axios.post(url, contact);
 };
-export const updateContacts=(contact,contactId)=>{
-    const url=`${SERVICES_URL}/contacts/${contactId}`;
-    return axios.put(url,contact);
+export const updateContacts = async (contact, contactId) => {
+    const url = `${SERVICES_URL}/contacts/${contactId}`;
+    return await axios.put(url, contact);
 };
-export const deleteContacts=(contactId)=>{
-    const url=`${SERVICES_URL}/contacts/${contactId}`;
-    return axios.delete(url);
+export const deleteContacts = async (contactId) => {
+    const url = `${SERVICES_URL}/contacts/${contactId}`;
+    return await axios.delete(url);
 };
