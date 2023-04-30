@@ -1,5 +1,6 @@
 import {Fragment} from "react";
 import {PINK, CURRENTLINE, ORANGE} from '../../helpers/colors'
+import {Link} from 'react-router-dom';
 import Contact from './contact';
 import Spinner from '../Spinner';
 
@@ -12,10 +13,10 @@ const Contacts = ({contacts, loading,}) => {
                     <div className="row">
                         <div className="col">
                             <p className="h3">
-                                <button className="btn mx-2 " style={{backgroundColor: "PINK"}}>
+                                <Link to={"/contacts/add"} className="btn mx-2 " style={{backgroundColor: "PINK"}}>
                                     ساخت مخاطب جدید
                                     <i className="fa fa-plus-circle"></i>
-                                </button>
+                                </Link>
                             </p>
                         </div>
                     </div>
