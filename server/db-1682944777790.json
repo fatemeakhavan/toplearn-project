@@ -69,6 +69,20 @@
       "job": "برنامع نویس , مدرس",
       "group": "2",
       "id": 6
+    },
+    {
+      "fullName": "test",
+      "photo": "5tg",
+      "mobile": "5",
+      "email": "mohammadordokhani8@gmail.com",
+      "job": "65tg",
+      "group": [
+        "2"
+      ],
+      "id": 7,
+      "fullname": [
+        "مهرداد صمدی مقدم"
+      ]
     }
   ],
   "group": [

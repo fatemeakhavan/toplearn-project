@@ -18,7 +18,7 @@ const ViewContact=()=>{
                const{data:contactData}= await getContact(contactId);
                const{data:groupData}=await getGroup(contactData.group);
 
-               setState({...state,loading:true,contact:contactData,group:groupData})
+               setState({...state,loading:false,contact:contactData,group:groupData})
            }
            catch(err){
                console.log(err.message())

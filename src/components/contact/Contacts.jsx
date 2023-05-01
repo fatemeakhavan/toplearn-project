@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import Contact from './contact';
 import Spinner from '../Spinner';
 
-const Contacts = ({contacts, loading,}) => {
+const Contacts = ({contacts,loading, confirmDelete}) => {
 
     return (
         <Fragment>
@@ -29,7 +29,10 @@ const Contacts = ({contacts, loading,}) => {
                         <div className="row">
                             {
                                 contacts.length > 0 ? contacts.map(c => (
-                                        <Contact key={c.id} contact={c}/>
+                                        <Contact key={c.id} contact={c}  confirmDelete={()=>confirmDelete(  c.id, c.fullName)}
+
+                                        />
+
                                     )) :
                                     (
                                         <div className="text-center py-5" style={{backgroundcolor: CURRENTLINE}}>

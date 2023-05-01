@@ -1,17 +1,27 @@
 import {useState,useEffect} from 'react';
-import {useParams,Navigate,useNavigate,Link} from "react-router-dom";
-import {getContact, getGroup, updateContacts} from "../../services/contactServices";
+import {useParams,useNavigate,Link} from "react-router-dom";
+import {getContact,
+    getAllGroups,
+    updateContacts}
+    from "../../services/contactServices";
+
+import {PURPLE,ORANGE,COMMENT} from "../../helpers/colors";
 import {contact, Spinner} from "../";
-const EditContact =()=>{
+
+
+const EditContact =({forceRender,setForceRender})=>{
+
     const{contactId} = useParams();
-    const{navigate}= useNavigate();
+    const navigate= useNavigate();
     const[state,setState]=useState({
+
         loading:false,
         contact:{
-            name:"",
+            fullName:"",
             photo:"",
             mobile:"",
             email:"",
+            job:"",
             group:""
         },
         groups:[]
@@ -22,9 +32,9 @@ const EditContact =()=>{
             try{
                 setState({...state,loading:true})
                 const{data:contactData}=await getContact(contactId);
-                const{data:groupData}=await getGroup();
+                const{data:groupData}=await getAllGroups();
 
-                setState({...state,loading:true,contact:contactData,groups:groupData})
+                setState({...state,loading:false,contact:contactData,groups:groupData})
             }
             catch(err){
                 console.log(err.message)
@@ -34,31 +44,33 @@ const EditContact =()=>{
         fetchData();
     },[]);
 
+
     const setContactInfo=(event)=>{
         setState({...state,
             contact:{
             ...state.contact,
                 [event.target.name]:[event.target.value]
-        };
+        }
         });
     };
-    const submitForm=(event)=>{
-        event.preventDefault();
+    const submitForm=async (event)=>{
+        event.preventDefault()
         try{
             setState({...state,loading:true})
-            const{data}=updateContacts(state.contact,contactId);
+            const{data}=await updateContacts(state.contact,contactId);
             setState({...state,loading:false})
-
+            console.log(data)
             if(data){
+                setForceRender(!forceRender);
                 navigate("/contacts");
             }
         }
-        catch(err){
+        catch(err) {
             console.log(err.message)
-            setState({...state,loading:false})
+            setState({...state, loading: false})
         }
     };
-    const{loading,contact,groups}=state;
+    const{loading,contact,groups}=state
     return(
         <>
             {loading ? (
@@ -83,10 +95,10 @@ const EditContact =()=>{
                                     <form onSubmit={submitForm}>
                                         <div className="mb-2">
                                             <input
-                                                name="fullname"
+                                                name="fullName"
                                                 type="text"
                                                 className="form-control"
-                                                value={contact.fullname}
+                                                value={contact.fullName}
                                                 onChange={setContactInfo}
                                                 required={true}
                                                 placeholder="نام و نام خانوادگی"
@@ -189,7 +201,7 @@ const EditContact =()=>{
                         </div>
                     </section>
                 </>
-            )}
+            )};
         </>
     )
 }
