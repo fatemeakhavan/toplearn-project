@@ -1,5 +1,5 @@
-import {Contacts, Navbar} from './components/index';
-import {Route, Routes, Navigate, useNavigate} from "react-router-dom";
+import {contact, Contacts, Navbar} from './components/index';
+import {Route, Routes, Navigate, useNavigate, Link} from "react-router-dom";
 import {useState, useEffect} from 'react';
 import Contact from "./components/contact/contact";
 import {EditContact, ViewContact} from "./components";
@@ -22,6 +22,9 @@ const App = () => {
     const [getGroups, setGroups] = useState([]);
     const [getContacts, setContacts] = useState([]);
     const[forceRender,setForceRender]=useState(false);
+    const[query,setQuery]=useState({text:""});
+    const[filterContact,setFilterContact]=useState();
+
     const navigate=useNavigate();
 
     useEffect(() => {
@@ -31,6 +34,7 @@ const App = () => {
                 const {data: contactsData} = await getAllContacts();
                 const {data: groupsData} = await getAllGroups();
                 setContacts(contactsData);
+                setFilterContact(contactsData);
                 setGroups(groupsData);
                 setLoading(false);
             } catch (err) {
@@ -80,6 +84,17 @@ const App = () => {
             console.log(err.message())
         }
     };
+    const contactSearch= (event)=>{
+        setQuery({...query,text:event.target.value});
+        const allContact=getContacts.filter((contact)=>{
+            return contact.fullName
+                .toLowerCase()
+                .includes(event.target.value.toLowerCase())
+        });
+        setFilterContact(allContact);
+
+
+    }
 
     const confirm=(contactId,contactFullName)=>{
         confirmAlert({
@@ -94,7 +109,7 @@ const App = () => {
                     >
                         <h1 style={{backgroundColor:CYAN}}>حذف مخاطب</h1>
                         <p style={{backgroundColor:PURPLE}}>
-                            آیا میخواهید مخاطب{contactFullName}حدف کنید؟
+                            آیا میخواهید مخاطب{contact.FullName}حدف کنید؟
                         </p>
                         <button className="btn mx-2" style={{backgroundColor:PURPLE}}
                                 onClick={()=>{
@@ -104,9 +119,11 @@ const App = () => {
                             مطمعن هستم
                         </button>
                         <button className="btn"
-                                style={{backgroundColor:COMMENT}}
-                                OnClick={onClose}>
-                            انصراف</button>
+                                style={{backgroundColor: COMMENT}}
+                                onClick={onClose}>
+                            انصراف
+                        </button>
+
 
                     </div>
 
@@ -134,10 +151,10 @@ const App = () => {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar query={query} search={contactSearch}/>
             <Routes>
                 <Route path="/" element={<Navigate to="/contacts"/>}/>
-                <Route path="/contacts" element={<Contacts contacts={getContacts} loading={loading} confirmDelete={confirm}/>}/>
+                <Route path="/contacts" element={<Contacts contacts={filterContact} loading={loading} confirmDelete={confirm}/>}/>
                 <Route path="/contacts/add"
                        element={< AddContact loading={loading} setContactInfo={setContactInfo} contact={Contact}
                                             createContactForm={createContactForm} groups={getGroups}/>}/>

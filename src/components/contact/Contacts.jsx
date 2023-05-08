@@ -28,7 +28,7 @@ const Contacts = ({contacts,loading, confirmDelete}) => {
                     <section className="container">
                         <div className="row">
                             {
-                                contacts.length > 0 ? contacts.map(c => (
+                               contacts && contacts.length > 0 ? contacts.map(c => (
                                         <Contact key={c.id} contact={c}  confirmDelete={()=>confirmDelete(  c.id, c.fullName)}
 
                                         />
