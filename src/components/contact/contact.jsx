@@ -3,7 +3,7 @@ import{Link} from 'react-router-dom';
 
 
 
-const Contact =({contact,confirmDelete})=>{
+const Contact =({contact,deleteContact})=>{
 
     return(
         <div className="col-md-6">
@@ -36,7 +36,7 @@ const Contact =({contact,confirmDelete})=>{
                             <Link to={`/contacts/edit/${contact.id}`} className="btn my-1" style={{backgroundColor:"ORANGE"}}>
                                 <i className="fa fa-pencil"></i>
                             </Link>
-                            <button className="btn my-1" style={{backgroundColor:"RED"}} onClick={confirmDelete}>
+                            <button className="btn my-1" style={{backgroundColor:"RED"}} onClick={deleteContact}>
                                 <i className="fa fa-trash"></i>
                             </button>
                         </div>

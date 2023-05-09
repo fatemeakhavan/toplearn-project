@@ -1,7 +1,7 @@
 /** export components from contact **/
 
 export {default as AddContact} from './contact/AddCountact';
-export {default as contact} from './contact/contact';
+export {default as Contact} from './contact/contact';
 export  {default as Contacts} from './contact/Contacts';
 export {default as EditContact} from './contact/EditContact';
 export {default as searchContact} from './contact/searchContact'

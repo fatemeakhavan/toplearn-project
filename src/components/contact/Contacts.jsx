@@ -3,8 +3,11 @@ import {PINK, CURRENTLINE, ORANGE} from '../../helpers/colors'
 import {Link} from 'react-router-dom';
 import Contact from './contact';
 import Spinner from '../Spinner';
+import {useContext} from "react";
+import {ContactContext} from "../../ContextApi/contactContext";
 
-const Contacts = ({contacts,loading, confirmDelete}) => {
+const Contacts = () => {
+    const{contacts,loading,deleteContact}=useContext(ContactContext);
 
     return (
         <Fragment>
@@ -29,7 +32,7 @@ const Contacts = ({contacts,loading, confirmDelete}) => {
                         <div className="row">
                             {
                                contacts && contacts.length > 0 ? contacts.map(c => (
-                                        <Contact key={c.id} contact={c}  confirmDelete={()=>confirmDelete(  c.id, c.fullName)}
+                                        <Contact key={c.id} contact={c}  deleteContact={()=> deleteContact(  c.id, c.fullName)}
 
                                         />
 

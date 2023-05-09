@@ -1,6 +1,9 @@
 import {PURPLE} from'../../helpers/colors';
+import {useContext} from 'react';
+import {ContactContext} from "../../ContextApi/contactContext";
 
-const Searchcontact = ({query,search})=> {
+const Searchcontact = ()=> {
+    const {contactQuery,contactSearch}=useContext(ContactContext);
     return (
         <div className="input-group mx-2 w-75" dir="ltr">
             <span className="input-group-text" id="basic-addont" style={{backgroundColor: "PURPLE"}}>
@@ -9,8 +12,8 @@ const Searchcontact = ({query,search})=> {
             <input
                 dir="rtl"
                 type="text"
-                value={query.text}
-                onChange={search}
+                value={contactQuery.text}
+                onChange={contactSearch}
                 style={{backgroundColor: 'PURPLE'}}
                 className='form-control'
                 placeholder='جستجوی مخاطب'
