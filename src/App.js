@@ -1,5 +1,5 @@
-import {Contact, Contacts, Navbar} from './components/index';
-import {Route, Routes, Navigate, useNavigate, Link} from "react-router-dom";
+import {Contacts, Navbar} from './components/index';
+import {Route, Routes, Navigate, useNavigate} from "react-router-dom";
 import {useState, useEffect} from 'react';
 import {EditContact, ViewContact} from "./components";
 import {getAllContacts, getAllGroups, createContacts, deleteContacts} from '../src/services/contactServices';
@@ -120,17 +120,25 @@ const App = () => {
     };
 
     const removeContact = async (contactId) => {
+        const allContacts=[...contacts];
         try {
-            setLoading(true)
-            const response = await deleteContacts(contactId);
-            if (response) {
-                const {data: contactData} = await getAllContacts();
-                setContacts(contactData);
-                setLoading(false)
+            const updateContact= allContacts.filter(c=> c.id !== contactId);
+            setContacts(updateContact);
+            setFilterContacts(updateContact);
+
+            const {status} = await deleteContacts(contactId);
+
+            if (status !== 200) {
+
+                setContacts(allContacts);
+                setFilterContacts(allContacts);
+
             }
         } catch (err) {
             console.log(err.message);
-            setLoading(false);
+            setContacts(allContacts);
+            setFilterContacts(allContacts);
+
         }
     }
 
@@ -142,8 +150,10 @@ const App = () => {
                 setLoading,
                 contact,
                 setContact,
+                setContacts,
                 contacts,
                 filterContacts,
+                setFilterContacts,
                 groups,
                 onContactChange,
                 deleteContact: confirmDelete,

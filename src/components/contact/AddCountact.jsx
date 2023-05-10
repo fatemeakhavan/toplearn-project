@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { Spinner } from "../";
 import { COMMENT, GREEN, PURPLE } from "../../helpers/colors";
-import {useContext} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {ContactContext} from "../../ContextApi/contactContext";
 
 const AddContact = () => {
-    const{loading,contact,onContactChange,groups,createContact}=useContext(ContactContext);
+    const{loading,onContactChange,groups,createContact,}=useContext(ContactContext);
+    const[contact,setContact]=useState({});
     return (
         <>
             {loading ? (

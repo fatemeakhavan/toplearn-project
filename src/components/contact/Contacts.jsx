@@ -7,7 +7,7 @@ import {useContext} from "react";
 import {ContactContext} from "../../ContextApi/contactContext";
 
 const Contacts = () => {
-    const{contacts,loading,deleteContact}=useContext(ContactContext);
+    const{contacts,loading,deleteContact,filterContacts}=useContext(ContactContext);
 
     return (
         <Fragment>
@@ -31,7 +31,7 @@ const Contacts = () => {
                     <section className="container">
                         <div className="row">
                             {
-                               contacts && contacts.length > 0 ? contacts.map(c => (
+                                filterContacts && filterContacts.length > 0 ? filterContacts.map(c => (
                                         <Contact key={c.id} contact={c}  deleteContact={()=> deleteContact(  c.id, c.fullName)}
 
                                         />
